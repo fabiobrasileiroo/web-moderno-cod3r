@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: aliceblue;
+      margin-top: 10px;
+      width: 200px;
+      padding: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <label for="cal1">Primeiro:</label>
+  <input type="number" id="cal1" placeholder="Digite um número">
+  <br>
+  <select name="select">
+  <option value="+" selected>+</option>
+  <option value="-">-</option>
+  <option value="/">÷</option>
+  <option value="*">x</option>
+  </select>
+  <br>
+  <label for="cal2">Segundo:</label>
+  <input type="number" id="cal2" placeholder="Digite um número">
+  <input type="submit" id="submit" onclick="calculadora()">
+  <div>
+    <span>Resultado</span>
+  </div>
+  <script>
+     let num1 = document.getElementById('cal1');
+  let num2 = document.getElementById('cal2');
+  let result = document.querySelector('span');
+  let condicao1 = document.querySelector('select');
+
+  function calculadora() {
+    let num1Value = parseFloat(num1.value);
+    let num2Value = parseFloat(num2.value);
+    let condicao = condicao1.value;
+     if (isNaN(num1Value) || isNaN(num2Value)) {
+      return 'Por favor, insira números válidos';
+    }
+    
+    switch(condicao) {
+      case '+':
+        return num1Value + num2Value;
+      case '-':
+        return num1Value - num2Value;
+      case '/':
+        return num1Value / num2Value;
+      case '*':
+        return num1Value * num2Value;
+      default:
+        return 'Operação inválida';
+    }
+  }
+
+  document.getElementById('submit').addEventListener('click', function() {
+    result.textContent = `Resultado: ${calculadora()}`;
+  });
+  </script>
+
+</body>
+
+</html>
